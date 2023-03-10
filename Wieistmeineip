@@ -39,15 +39,23 @@
 </head>
 <body>
 	<h1>Meine IP-Adresse</h1>
-	<p>Deine IP-Adresse ist: <span class="ip-address" id="ip-address"></span></p>
+	<p>Deine IPv4-Adresse ist: <span class="ip-address" id="ipv4-address"></span></p>
+	<p>Deine IPv-Adresse ist: <span class="ipv-address" id="ipv-address"></span></p>
 
 	<script>
-		// Abrufen der IP-Adresse des Besuchers
+		// Abrufen der IPv4-Adresse und der IPv-Adresse des Besuchers
+		fetch('https://api64.ipify.org?format=json')
+			.then(response => response.json())
+			.then(data => {
+				document.getElementById('ipv-address').innerText = data.ip;
+			});
+
 		fetch('https://api.ipify.org?format=json')
 			.then(response => response.json())
 			.then(data => {
-				document.getElementById('ip-address').innerText = data.ip;
+				document.getElementById('ipv4-address').innerText = data.ip;
 			});
 	</script>
 </body>
 </html>
+
